@@ -6,4 +6,6 @@ services:
        - .:/src
      ports:
        - "80"
+     env_file:
+       - .env
      command: uvicorn app.server.app:app --reload --port 80 --host 0.0.0.0
