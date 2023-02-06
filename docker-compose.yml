@@ -1,11 +1,18 @@
 version: "3.9"
 services:
-   enved:
-     build: .
-     volumes:
-       - .:/src
-     ports:
-       - "80"
-     env_file:
-       - .env
-     command: uvicorn app.server.app:app --reload --port 80 --host 0.0.0.0
+  web:
+    build: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+  api:
+    build: .
+    volumes:
+      - .:/src
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    command: uvicorn app.server.app:app --reload --port 80 --host 0.0.0.0
