@@ -5,10 +5,10 @@ import os
 
 dotenv.load_dotenv()
 
-MONGO_DETAILS = os.environ["TEST_DB_LOCAL"]
+MONGO_DETAILS = os.environ["DB_PROD"]
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
-database = client.env_problems
+database = client.default_db
 problems_collection = database.get_collection("env_problems")
 
 

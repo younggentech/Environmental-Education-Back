@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+   enved:
+     build: .
+     volumes:
+       - .:/src
+     ports:
+       - "80"
+     command: uvicorn app.server.app:app --reload --port 80 --host 0.0.0.0

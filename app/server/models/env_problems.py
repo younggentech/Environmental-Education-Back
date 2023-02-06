@@ -12,7 +12,7 @@ class ProblemSchema(BaseModel):
             "example": {
                 "heading": "Environmental issue",
                 "text": "The most important issue is deforestration, this problem occures in modern areas.",
-                "img": "/public/deforestration.jpg",
+                "img": "/static/deforestration.jpg",
             }
         }
 
@@ -27,14 +27,14 @@ class UpdateProblemModel(BaseModel):
             "example": {
                 "heading": "Environmental issue",
                 "text": "The most important issue is deforestration, this problem occures in modern areas.",
-                "img": "/public/deforestration.jpg",
+                "img": "/static/deforestration.jpg",
             }
         }
 
 
 def ResponseModel(data, message):
     return {
-        "data": [data],
+        "data": [data] if not isinstance(data, list) else data,
         "code": 200,
         "message": message,
     }

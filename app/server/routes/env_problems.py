@@ -1,3 +1,5 @@
+import random
+
 import bson
 from fastapi import APIRouter, Body, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -32,6 +34,14 @@ async def get_environmental_problems():
     if problems:
         return ResponseModel(problems, "Success")
     return ResponseModel(problems, "Empty")
+
+
+@router.get("/random", response_description="Retrieve random number of problems")
+async def retrieve_random_problems(number: int = 3):
+    problems = await retrieve_problems()
+    if problems and len(problems) >= number:
+        return ResponseModel(random.sample(problems, number), "Success")
+    raise HTTPException(400, "Parameter number should be >= number of available problems")
 
 
 @router.get("/{problem_id}", response_description="Retrieve a problem based on it's ID")
