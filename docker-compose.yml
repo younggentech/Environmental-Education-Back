@@ -5,7 +5,7 @@ services:
     restart: always
     labels:
       - traefik.enable=true
-      - traefik.http.routers.app-http.rule="Host(`env-api.enved.space`)"
+      - traefik.http.routers.app-http.rule=Host(`env-api.enved.space`)
       - traefik.http.routers.app-http.tls=true
       - traefik.http.routers.app-http.tls.certresolver=letsencrypt
   traefik:
