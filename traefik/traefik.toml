@@ -18,6 +18,6 @@
 
 [certificatesResolvers.letsencrypt.acme]
   email = "obtuse.cosy.0q@icloud.com"
-  storage= "acme.json"
+  storage= "/letsencrypt/acme.json"
   [certificatesResolvers.letsencrypt.acme.httpChallenge]
     entryPoint = "web"
